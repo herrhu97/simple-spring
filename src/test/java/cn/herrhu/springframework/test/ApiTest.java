@@ -6,10 +6,13 @@ import cn.herrhu.springframework.beans.factory.config.BeanDefinition;
 import cn.herrhu.springframework.beans.factory.config.BeanReference;
 import cn.herrhu.springframework.beans.factory.support.DefaultListableBeanFactory;
 import cn.herrhu.springframework.beans.factory.xml.XmlBeanDefinitionReader;
+import cn.herrhu.springframework.context.support.ClassPathXmlApplicationContext;
 import cn.herrhu.springframework.core.io.DefaultResourceLoader;
 import cn.herrhu.springframework.core.io.Resource;
 import cn.herrhu.springframework.test.bean.UserDao;
 import cn.herrhu.springframework.test.bean.UserService;
+import cn.herrhu.springframework.test.common.MyBeanFactoryPostProcessor;
+import cn.herrhu.springframework.test.common.MyBeanPostProcessor;
 import cn.hutool.core.io.IoUtil;
 import org.junit.Before;
 import org.junit.Test;
@@ -52,19 +55,31 @@ public class ApiTest {
     }
 
     @Test
-    public void test_xml() {
+    public void test_BeanFactoryPostProcessorAndBeanPostProcessor() {
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
 
         XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactory);
         reader.loadBeanDefinitions("classpath:spring.xml");
 
-        UserService userService = beanFactory.getBean("userService", UserService.class);
+        MyBeanFactoryPostProcessor beanFactoryPostProcessor = new MyBeanFactoryPostProcessor();
+        beanFactoryPostProcessor.postProcessBeanFactory(beanFactory);
 
+        MyBeanPostProcessor beanPostProcessor = new MyBeanPostProcessor();
+        beanFactory.addBeanPostProcessor(beanPostProcessor);
+
+        UserService userService = beanFactory.getBean("userService", UserService.class);
         String result = userService.queryUserInfo();
         System.out.println("result is : " + result);
     }
 
+    @Test
+    public void test_xml() {
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:springPostProcessor.xml");
 
+        UserService userService = applicationContext.getBean("userService", UserService.class);
+
+        System.out.println(userService.queryUserInfo());
+    }
 
 
 }
