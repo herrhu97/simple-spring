@@ -16,8 +16,10 @@ import cn.herrhu.springframework.test.common.MyBeanPostProcessor;
 import cn.hutool.core.io.IoUtil;
 import org.junit.Before;
 import org.junit.Test;
+import org.openjdk.jol.info.ClassLayout;
 import sun.awt.image.OffScreenImageSource;
 
+import javax.xml.bind.SchemaOutputResolver;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -83,5 +85,30 @@ public class ApiTest {
 
         System.out.println("ApplicationContextAware: " + userService.getApplicationContext());
         System.out.println("BeanFactory: " + userService.getBeanFactory());
+    }
+
+    @Test
+    public void test_prototype() {
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring.xml");
+        applicationContext.registerShutdownHook();
+
+        UserService userService1 = applicationContext.getBean("userService", UserService.class);
+        UserService userService2 = applicationContext.getBean("userService", UserService.class);
+
+        System.out.println(userService1);
+        System.out.println(userService2);
+
+        System.out.println(userService1 + " hex hash code:" + Integer.toHexString(userService1.hashCode()));
+        System.out.println(ClassLayout.parseInstance(userService1).toPrintable());
+    }
+
+    @Test
+    public void test_factory_bean() {
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring.xml");
+        applicationContext.registerShutdownHook();
+
+        UserService userService
+                = applicationContext.getBean("userService", UserService.class);
+        System.out.println(userService.queryUserInfo());
     }
 }

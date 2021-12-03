@@ -59,6 +59,11 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
         loadBeanDefinitions(resource);
     }
 
+    /**
+     * 非常核心的Spring xml配置解析方法，含有很多逻辑
+     * @param inputStream
+     * @throws ClassNotFoundException
+     */
     protected  void doLoadBeanDefinitions(InputStream inputStream) throws ClassNotFoundException {
         Document doc = XmlUtil.readXML(inputStream);
         Element root = doc.getDocumentElement();
@@ -76,7 +81,9 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
             String className = bean.getAttribute("class");
             String initMethodName = bean.getAttribute("init-method");
             String destroyMethodName = bean.getAttribute("destroy-method");
+            String beanScope = bean.getAttribute("scope");
 
+            //默认使用类的小驼峰名作为beanName
             Class<?> clazz = Class.forName(className);
             String beanName = StrUtil.isNotEmpty(id) ? id : name;
             if (StrUtil.isEmpty(beanName)) {
@@ -87,6 +94,10 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
             BeanDefinition beanDefinition = new BeanDefinition(clazz);
             beanDefinition.setDestroyMethodName(destroyMethodName);
             beanDefinition.setInitMethodName(initMethodName);
+
+            if (StrUtil.isNotEmpty(beanScope)) {
+                beanDefinition.setScope(beanScope);
+            }
 
             for (int j = 0; j < bean.getChildNodes().getLength(); j ++) {
                 if (!(bean.getChildNodes().item(j) instanceof Element)) continue;

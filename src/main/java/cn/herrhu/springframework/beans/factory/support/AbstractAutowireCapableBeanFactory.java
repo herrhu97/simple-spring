@@ -33,11 +33,19 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
         registerDisposableBeanIfNecessary(beanName, bean, beanDefinition);
 
-        addSingleton(beanName, bean);
+        //判断SCOPE_SINGLETON、SCOPE_PROTOTYPE
+        if (beanDefinition.isSingleton()) {
+            addSingleton(beanName, bean);
+        }
+
         return bean;
     }
 
     protected void registerDisposableBeanIfNecessary(String beanName, Object bean, BeanDefinition beanDefinition) {
+
+        //非Singleton类型的Bean不执行销毁方法
+        if (!beanDefinition.isSingleton()) return;
+
         if (bean instanceof DisposableBean || StrUtil.isNotEmpty(beanDefinition.getDestroyMethodName())) {
             registerDisposableBean(beanName, new DisposableBeanAdapter(bean, beanName, beanDefinition));
         }
@@ -136,7 +144,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
                 if (value instanceof BeanReference) {
                     // A 依赖 B, 获取B的实例化
-                    BeanReference beanReference = (BeanReference) value; //相当于BeanReference提供beanname，再去容器里找bean实例
+                    BeanReference beanReference = (BeanReference) value; //相当于BeanReference提供beanName，再去容器里找bean实例
                     value = getBean(beanReference.getBeanName());
                 }
 
