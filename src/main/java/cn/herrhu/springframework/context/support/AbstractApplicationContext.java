@@ -12,6 +12,10 @@ import java.util.Map;
 
 public abstract class AbstractApplicationContext extends DefaultResourceLoader
         implements ConfigurableApplicationContext {
+    /**
+     * Spring容器的核心逻辑
+     * @throws BeansException
+     */
     @Override
     public void refresh() throws BeansException {
         //1.创建BeanFactory，并加载BeanDefinition
@@ -20,13 +24,16 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
         //2.获取BeanFactory
         ConfigurableListableBeanFactory beanFactory = getBeanFactory();
 
-        //3.在Bean实例化之前，执行BeanFactoryPostProcessor （invoke factory processors registered as beans in the context)
+        //3.添加ApplicationContextAwareProcessor，让继承自ApplicationContextAware的Bean的对象都能感知所属的ApplicationContext
+        beanFactory.addBeanPostProcessor(new ApplicationContextAwareProcessor(this));
+
+        //4.在Bean实例化之前，执行BeanFactoryPostProcessor （invoke factory processors registered as beans in the context)
         invokeBeanFactoryPostProcessors(beanFactory);
 
-        //4.BeanPostProcessor需要提前与其他Bean对象实例化之前执行注册操作
+        //5.BeanPostProcessor需要提前与其他Bean对象实例化之前执行注册操作
         registerBeanPostProcessors(beanFactory);
 
-        //5.提前实例化单例Bean对象
+        //6.提前实例化单例Bean对象
         beanFactory.preInstantiateSingletons();
     }
 

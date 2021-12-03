@@ -3,8 +3,7 @@ package cn.herrhu.springframework.beans.factory.support;
 import cn.herrhu.springframework.beans.BeansException;
 import cn.herrhu.springframework.beans.PropertyValue;
 import cn.herrhu.springframework.beans.PropertyValues;
-import cn.herrhu.springframework.beans.factory.DisposableBean;
-import cn.herrhu.springframework.beans.factory.InitializingBean;
+import cn.herrhu.springframework.beans.factory.*;
 import cn.herrhu.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import cn.herrhu.springframework.beans.factory.config.BeanDefinition;
 import cn.herrhu.springframework.beans.factory.config.BeanPostProcessor;
@@ -45,6 +44,18 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     }
 
     private Object initializeBean(String beanName, Object bean, BeanDefinition beanDefinition) {
+        if (bean instanceof Aware) {
+            if (bean instanceof BeanFactoryAware) {
+                ((BeanFactoryAware) bean).setBeanFactory(this);
+            }
+            if (bean instanceof BeanClassLoaderAware) {
+                ((BeanClassLoaderAware) bean).setBeanClassLoader(getBeanClassLoader());
+            }
+            if (bean instanceof BeanNameAware) {
+                ((BeanNameAware) bean).setBeanName(beanName);
+            }
+        }
+
         Object wrappedBean = applyBeanPostProcessorsBeforeInitialization(bean, beanName);
 
         try {
