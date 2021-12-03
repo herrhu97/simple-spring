@@ -1,13 +1,16 @@
 package cn.herrhu.springframework.test.bean;
 
-public class UserService {
+import cn.herrhu.springframework.beans.factory.DisposableBean;
+import cn.herrhu.springframework.beans.factory.InitializingBean;
+
+public class UserService implements InitializingBean, DisposableBean {
     private String uId;
     private String company;
     private String location;
     private UserDao userDao;
 
-    public String  queryUserInfo() {
-        return  userDao.queryUserName(uId) + company + location;
+    public String queryUserInfo() {
+        return  userDao.queryUserName(uId) + " " +  company + " " + location;
     }
 
     public String getCompany() {
@@ -50,5 +53,15 @@ public class UserService {
                 ", location='" + location + '\'' +
                 ", userDao=" + userDao +
                 '}';
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        System.out.println("invoke: UserService.destroy");
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.out.println("invoke: UserService.afterPropertiesSet");
     }
 }

@@ -1,14 +1,12 @@
 package cn.herrhu.springframework.beans.factory.config;
 
-import cn.herrhu.springframework.beans.PropertyValue;
 import cn.herrhu.springframework.beans.PropertyValues;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class BeanDefinition {
     private  Class beanClass;
     private PropertyValues propertyValues;
+    private String initMethodName;
+    private String destroyMethodName;
 
     public BeanDefinition(Class beanClass) {
         this.beanClass = beanClass;
@@ -34,5 +32,21 @@ public class BeanDefinition {
 
     public void setBeanClass(Class beanClass) {
         this.beanClass = beanClass;
+    }
+
+    public String getInitMethodName() {
+        return initMethodName;
+    }
+
+    public void setInitMethodName(String initMethodName) {
+        this.initMethodName = initMethodName;
+    }
+
+    public String getDestroyMethodName() {
+        return destroyMethodName;
+    }
+
+    public void setDestroyMethodName(String destroyMethodName) {
+        this.destroyMethodName = destroyMethodName;
     }
 }

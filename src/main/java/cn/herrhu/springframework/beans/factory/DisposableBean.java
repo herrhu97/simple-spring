@@ -8,5 +8,10 @@ package cn.herrhu.springframework.beans.factory;
  *
  */
 public interface DisposableBean {
+
+    /**
+     * 类似于Cpp的析构函数概念，resource概念很广不一定是内存，或许是网络连接部分的关闭
+     * @throws Exception
+     */
     void destroy() throws Exception;
 }
