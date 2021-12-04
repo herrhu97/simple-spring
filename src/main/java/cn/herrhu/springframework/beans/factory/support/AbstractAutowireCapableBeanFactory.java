@@ -35,7 +35,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
         //判断SCOPE_SINGLETON、SCOPE_PROTOTYPE
         if (beanDefinition.isSingleton()) {
-            addSingleton(beanName, bean);
+            registerSingleton(beanName, bean);
         }
 
         return bean;

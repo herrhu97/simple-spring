@@ -13,6 +13,7 @@ import cn.herrhu.springframework.test.bean.UserDao;
 import cn.herrhu.springframework.test.bean.UserService;
 import cn.herrhu.springframework.test.common.MyBeanFactoryPostProcessor;
 import cn.herrhu.springframework.test.common.MyBeanPostProcessor;
+import cn.herrhu.springframework.test.event.CustomEvent;
 import cn.hutool.core.io.IoUtil;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,36 +26,6 @@ import java.io.InputStream;
 
 
 public class ApiTest {
-    private DefaultResourceLoader resourceLoader;
-
-    @Before
-    public void init() {
-        resourceLoader = new DefaultResourceLoader();
-    }
-
-    @Test
-    public void test_classpath() throws IOException {
-        Resource resource = resourceLoader.getResource("classpath:important.properties");
-        InputStream inputStream = resource.getInputStream();
-        String content = IoUtil.readUtf8(inputStream);
-        System.out.println(content);
-    }
-
-    @Test
-    public void test_file() throws  IOException {
-        Resource resource = resourceLoader.getResource("src/test/resources/important.properties");
-        InputStream inputStream = resource.getInputStream();
-        String content = IoUtil.readUtf8(inputStream);
-        System.out.println(content);
-    }
-
-    @Test
-    public void test_url() throws IOException {
-        Resource resource = resourceLoader.getResource("https://github.com/fuzhengwei/small-spring/important.properties");
-        InputStream inputStream = resource.getInputStream();
-        String content = IoUtil.readUtf8(inputStream);
-        System.out.println(content);
-    }
 
     @Test
     public void test_BeanFactoryPostProcessorAndBeanPostProcessor() {
@@ -110,5 +81,12 @@ public class ApiTest {
         UserService userService
                 = applicationContext.getBean("userService", UserService.class);
         System.out.println(userService.queryUserInfo());
+    }
+
+    @Test
+    public void test_event() {
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:springEvent.xml");
+        applicationContext.publishEvent(new CustomEvent(applicationContext, 1019129009086763L, "success!"));
+        applicationContext.registerShutdownHook();
     }
 }

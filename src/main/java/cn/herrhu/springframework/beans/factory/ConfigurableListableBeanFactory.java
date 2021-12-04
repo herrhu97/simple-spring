@@ -6,6 +6,7 @@ import cn.herrhu.springframework.beans.factory.config.BeanDefinition;
 import cn.herrhu.springframework.beans.factory.config.BeanPostProcessor;
 import cn.herrhu.springframework.beans.factory.config.ConfigurableBeanFactory;
 
+// ListableBeanFactory, AutowireCapableBeanFactory, ConfigurableBeanFactory
 public interface ConfigurableListableBeanFactory extends  ListableBeanFactory, AutowireCapableBeanFactory, ConfigurableBeanFactory {
     public BeanDefinition getBeanDefinition(String beanName);
 
