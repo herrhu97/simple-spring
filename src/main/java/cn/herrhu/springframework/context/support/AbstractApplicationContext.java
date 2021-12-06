@@ -50,7 +50,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
         //6.初始化事件发布者
         initApplicationEventMulticaster();
 
-        //7.注册事件监听器
+        //7.注册事件监听器，从beanDefinitionMap里找类为Listener的BeanDefinition并返回对象
         registerListeners();
 
         //8.提前实例化单例Bean对象
