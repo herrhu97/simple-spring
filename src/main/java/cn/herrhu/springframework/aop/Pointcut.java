@@ -5,7 +5,7 @@ package cn.herrhu.springframework.aop;
  * @author: HerrHu
  * @time: 2021/12/6 16:22
  */
-public interface PointCut {
+public interface Pointcut {
     /**
      * returns the ClassFilter for this PointCut
      *

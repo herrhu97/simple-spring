@@ -12,10 +12,10 @@ import java.lang.reflect.Proxy;
  * @author: HerrHu
  * @time: 2021/12/6 17:09
  */
-public class JDKDynamicAopProxy implements AopProxy, InvocationHandler {
+public class JdkDynamicAopProxy implements AopProxy, InvocationHandler {
     private final AdvisedSupport advised;
 
-    public JDKDynamicAopProxy(AdvisedSupport advisedSupport) {
+    public JdkDynamicAopProxy(AdvisedSupport advisedSupport) {
         this.advised = advisedSupport;
     }
 

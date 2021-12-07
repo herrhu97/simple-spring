@@ -11,6 +11,9 @@ import org.aopalliance.intercept.MethodInterceptor;
  * @time: 2021/12/6 16:33
  */
 public class AdvisedSupport {
+
+    private boolean proxyTargetClass = false;
+
     private TargetSource targetSource;
 
     private MethodMatcher methodMatcher;
@@ -39,5 +42,13 @@ public class AdvisedSupport {
 
     public void setMethodInterceptor(MethodInterceptor methodInterceptor) {
         this.methodInterceptor = methodInterceptor;
+    }
+
+    public boolean isProxyTargetClass() {
+        return this.proxyTargetClass;
+    }
+
+    public void setProxyTargetClass(boolean proxyTargetClass) {
+        this.proxyTargetClass = proxyTargetClass;
     }
 }

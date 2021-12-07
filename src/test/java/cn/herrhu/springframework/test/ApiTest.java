@@ -2,20 +2,33 @@ package cn.herrhu.springframework.test;
 
 import cn.herrhu.springframework.aop.AdvisedSupport;
 import cn.herrhu.springframework.aop.TargetSource;
-import cn.herrhu.springframework.aop.aspectj.AspectJExpressionPointCut;
+import cn.herrhu.springframework.aop.aspectj.AspectJExpressionPointcut;
 import cn.herrhu.springframework.aop.framework.Cglib2AopProxy;
-import cn.herrhu.springframework.aop.framework.JDKDynamicAopProxy;
+import cn.herrhu.springframework.aop.framework.JdkDynamicAopProxy;
+import cn.herrhu.springframework.context.support.ClassPathXmlApplicationContext;
 import cn.herrhu.springframework.test.bean.DynamicInvocation;
 import cn.herrhu.springframework.test.bean.IUserService;
 import cn.herrhu.springframework.test.bean.UserService;
 import cn.herrhu.springframework.test.bean.UserServiceInterceptor;
+import org.junit.Before;
 import org.junit.Test;
 
-import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 
 public class ApiTest {
+    private AdvisedSupport advisedSupport;
+
+    @Before
+    public void init() {
+        // 目标对象
+        IUserService userService = new UserService();
+        // 组装代理信息
+        advisedSupport = new AdvisedSupport();
+        advisedSupport.setTargetSource(new TargetSource(userService));
+        advisedSupport.setMethodInterceptor(new UserServiceInterceptor());
+        advisedSupport.setMethodMatcher(new AspectJExpressionPointcut("execution(* cn.herrhu.springframework.test.bean.IUserService.*(..))"));
+    }
 
 
     @Test
@@ -34,14 +47,11 @@ public class ApiTest {
     }
 
     @Test
-    public void test_aop() throws NoSuchMethodException {
-        AspectJExpressionPointCut pointCut = new AspectJExpressionPointCut(
-                "execution(* cn.herrhu.springframework.test.bean.IUserService.*(..))"
-        );
-        Class<UserService> clazz = UserService.class;
-        Method queryUserInfo = clazz.getDeclaredMethod("queryUserInfo");
-        System.out.println(pointCut.matches(clazz));
-        System.out.println(pointCut.matches(queryUserInfo, clazz));
+    public void test_aop() {
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring-aop.xml");
+
+        IUserService userService = applicationContext.getBean("userService", IUserService.class);
+        System.out.println("测试结果：" + userService.queryUserInfo());
     }
 
     @Test
@@ -53,11 +63,11 @@ public class ApiTest {
         advisedSupport.setTargetSource(new TargetSource(userService));
         advisedSupport.setMethodInterceptor(new UserServiceInterceptor());
         //用切点表达式做MethodMatcher
-        advisedSupport.setMethodMatcher(new AspectJExpressionPointCut(
+        advisedSupport.setMethodMatcher(new AspectJExpressionPointcut(
                 "execution(* cn.herrhu.springframework.test.bean.IUserService.*(..))"
         ));
 
-        IUserService proxy_jdk = (IUserService) new JDKDynamicAopProxy(advisedSupport).getProxy();
+        IUserService proxy_jdk = (IUserService) new JdkDynamicAopProxy(advisedSupport).getProxy();
         System.out.println("测试结果：" + proxy_jdk.queryUserInfo());
 
         IUserService proxy_cglib = (IUserService) new Cglib2AopProxy(advisedSupport).getProxy();
