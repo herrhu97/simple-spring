@@ -1,7 +1,7 @@
 package cn.herrhu.springframework.aop;
 
 /**
- * @description:
+ * @description: Class对象过滤
  * @author: HerrHu
  * @time: 2021/12/6 16:23
  */

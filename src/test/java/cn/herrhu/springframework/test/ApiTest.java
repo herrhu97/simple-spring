@@ -52,6 +52,7 @@ public class ApiTest {
         //JDK动态代理肯定要传入被代理的对象
         advisedSupport.setTargetSource(new TargetSource(userService));
         advisedSupport.setMethodInterceptor(new UserServiceInterceptor());
+        //用切点表达式做MethodMatcher
         advisedSupport.setMethodMatcher(new AspectJExpressionPointCut(
                 "execution(* cn.herrhu.springframework.test.bean.IUserService.*(..))"
         ));

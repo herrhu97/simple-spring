@@ -29,16 +29,22 @@ public class Cglib2AopProxy implements AopProxy {
     }
 
 
+    /**
+     * DynamicAdvisedInterceptor <- MethodInterceptor <- Callback
+     * 放置Enhancer需要的Callback的内部类
+     */
     private static class DynamicAdvisedInterceptor implements MethodInterceptor {
         private final AdvisedSupport advised;
 
         @Override
-        public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
+        public Object intercept(Object o, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
             CglibMethodInvocation methodInvocation = new CglibMethodInvocation(advised.getTargetSource().getTarget(),
-                    method, objects, methodProxy);
+                    method, args, methodProxy);
+            //匹配成功用methodInterceptor来invoke此方法
             if (advised.getMethodMatcher().matches(method, advised.getTargetSource().getTarget().getClass())) {
                 return advised.getMethodInterceptor().invoke(methodInvocation);
             }
+            //匹配不成功用methodProxy来invoke此方法
             return methodInvocation.proceed();
         }
 
@@ -47,6 +53,10 @@ public class Cglib2AopProxy implements AopProxy {
         }
     }
 
+    /**
+     * 父类的proceed(): return method.invoke(target, arguments);
+     * 整个类的逻辑就是用methodProxy来invoke
+     */
     private static class CglibMethodInvocation extends ReflectiveMethodInvocation {
         private final MethodProxy methodProxy;
 

@@ -3,7 +3,7 @@ package cn.herrhu.springframework.aop;
 import java.lang.reflect.Method;
 
 /**
- * @description:
+ * @description: 方法与Class对象匹配
  * @author: HerrHu
  * @time: 2021/12/6 16:23
  */

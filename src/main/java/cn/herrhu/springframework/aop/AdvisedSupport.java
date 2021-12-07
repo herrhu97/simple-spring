@@ -6,7 +6,7 @@ import org.aopalliance.intercept.MethodInterceptor;
 /**
  * Base class for AOP proxy configuration managers.
  *
- * @description: 把代理、拦截、匹配各项属性包装到一个类中
+ * @description: 把被代理对象、拦截器、匹配器各项属性包装到一个类中
  * @author: HerrHu
  * @time: 2021/12/6 16:33
  */

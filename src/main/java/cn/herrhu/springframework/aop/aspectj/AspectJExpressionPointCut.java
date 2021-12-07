@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @description:
+ * @description: 指明切面位置，包装ClassFilter、MethodMatcher（均由切面表达式提供），作为proxy需要的MethodMatcher使用
  * @author: HerrHu
  * @time: 2021/12/6 16:41
  */
