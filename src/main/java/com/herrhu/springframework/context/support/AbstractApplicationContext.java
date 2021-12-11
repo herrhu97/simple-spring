@@ -25,7 +25,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
     private ApplicationEventMulticaster applicationEventMulticaster;
 
     /**
-     * Spring容器的核心逻辑
+     * Spring容器启动的核心逻辑
      *
      * @throws BeansException
      */
@@ -113,6 +113,11 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
     @Override
     public <T> T getBean(String name, Class<T> requireType) throws BeansException {
         return getBeanFactory().getBean(name, requireType);
+    }
+
+    @Override
+    public <T> T getBean(Class<T> requiredType) throws BeansException {
+        return getBeanFactory().getBean(requiredType);
     }
 
     @Override

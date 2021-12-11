@@ -4,6 +4,7 @@ import com.herrhu.springframework.aop.*;
 import com.herrhu.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor;
 import com.herrhu.springframework.aop.framework.ProxyFactory;
 import com.herrhu.springframework.beans.BeansException;
+import com.herrhu.springframework.beans.PropertyValues;
 import com.herrhu.springframework.beans.factory.BeanFactory;
 import com.herrhu.springframework.beans.factory.BeanFactoryAware;
 import com.herrhu.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor;
@@ -26,6 +27,7 @@ public class DefaultAdvisorAutoProxyCreator implements InstantiationAwareBeanPos
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
         this.beanFactory = (DefaultListableBeanFactory) beanFactory;
     }
+
 
     @Override
     public Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) throws BeansException {
@@ -60,6 +62,11 @@ public class DefaultAdvisorAutoProxyCreator implements InstantiationAwareBeanPos
         }
 
         return null;
+    }
+
+    @Override
+    public PropertyValues postProcessPropertyValues(PropertyValues pvs, Object bean, String beanName) throws BeansException {
+        return pvs;
     }
 
     private boolean isInfrastructureClass(Class<?> beanClass) {
