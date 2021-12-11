@@ -4,11 +4,11 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean class="cn.herrhu.springframework.beans.factory.PropertyPlaceholderConfigurer">
+    <bean class="com.herrhu.springframework.beans.factory.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:token.properties"/>
     </bean>
 
-    <bean id="userService" class="cn.herrhu.springframework.test.bean.UserService">
+    <bean id="userService" class="com.herrhu.springframework.test.bean.UserService">
         <property name="token" value="${token}"/>
     </bean>
 
