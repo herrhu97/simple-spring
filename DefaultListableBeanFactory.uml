@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>cn.herrhu.springframework.beans.factory.support.DefaultListableBeanFactory</OriginalElement>
+  <nodes>
+    <node x="564.883474576271" y="230.0">cn.herrhu.springframework.beans.factory.HierarchicalBeanFactory</node>
+    <node x="16.5" y="151.0">cn.herrhu.springframework.beans.factory.support.DefaultSingletonBeanRegistry</node>
+    <node x="152.2033898305084" y="569.0">cn.herrhu.springframework.beans.factory.support.AbstractBeanFactory</node>
+    <node x="0.0" y="393.0">cn.herrhu.springframework.beans.factory.support.FactoryBeanRegistrySupport</node>
+    <node x="1194.3283898305085" y="996.5">cn.herrhu.springframework.beans.factory.support.BeanDefinitionRegistry</node>
+    <node x="999.383474576271" y="679.5">cn.herrhu.springframework.beans.factory.config.AutowireCapableBeanFactory</node>
+    <node x="828.883474576271" y="206.5">cn.herrhu.springframework.beans.factory.ListableBeanFactory</node>
+    <node x="818.3283898305084" y="1007.5">cn.herrhu.springframework.beans.factory.ConfigurableListableBeanFactory</node>
+    <node x="804.1673728813558" y="0.0">cn.herrhu.springframework.beans.factory.BeanFactory</node>
+    <node x="160.36228813559308" y="11.0">cn.herrhu.springframework.beans.factory.config.SingletonBeanRegistry</node>
+    <node x="692.7033898305083" y="1245.0">cn.herrhu.springframework.beans.factory.support.DefaultListableBeanFactory</node>
+    <node x="214.45338983050829" y="919.0">cn.herrhu.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory</node>
+    <node x="434.9999999999999" y="393.0">cn.herrhu.springframework.beans.factory.config.ConfigurableBeanFactory</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="cn.herrhu.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory" target="cn.herrhu.springframework.beans.factory.support.AbstractBeanFactory" relationship="GENERALIZATION">
+      <point x="-123.74999999999994" y="-138.0" />
+      <point x="0.0" y="149.0" />
+    </edge>
+    <edge source="cn.herrhu.springframework.beans.factory.ListableBeanFactory" target="cn.herrhu.springframework.beans.factory.BeanFactory" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-38.5" />
+      <point x="988.883474576271" y="125.0" />
+      <point x="931.1673728813558" y="125.0" />
+      <point x="0.0" y="49.5" />
+    </edge>
+    <edge source="cn.herrhu.springframework.beans.factory.support.DefaultListableBeanFactory" target="cn.herrhu.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory" relationship="GENERALIZATION">
+      <point x="-91.0" y="-94.0" />
+      <point x="783.7033898305083" y="1225.0" />
+      <point x="461.9533898305083" y="1225.0" />
+      <point x="0.0" y="138.0" />
+    </edge>
+    <edge source="cn.herrhu.springframework.beans.factory.config.ConfigurableBeanFactory" target="cn.herrhu.springframework.beans.factory.HierarchicalBeanFactory" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-61.0" />
+      <point x="612.9999999999999" y="366.0" />
+      <point x="686.883474576271" y="366.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="cn.herrhu.springframework.beans.factory.ConfigurableListableBeanFactory" target="cn.herrhu.springframework.beans.factory.ListableBeanFactory" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-49.5" />
+      <point x="996.3283898305084" y="888.0" />
+      <point x="988.883474576271" y="888.0" />
+      <point x="0.0" y="38.5" />
+    </edge>
+    <edge source="cn.herrhu.springframework.beans.factory.support.AbstractBeanFactory" target="cn.herrhu.springframework.beans.factory.config.ConfigurableBeanFactory" relationship="REALIZATION">
+      <point x="93.0" y="-149.0" />
+      <point x="431.2033898305084" y="542.0" />
+      <point x="523.9999999999999" y="542.0" />
+      <point x="-89.0" y="61.0" />
+    </edge>
+    <edge source="cn.herrhu.springframework.beans.factory.ConfigurableListableBeanFactory" target="cn.herrhu.springframework.beans.factory.config.ConfigurableBeanFactory" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-49.5" />
+      <point x="996.3283898305084" y="888.0" />
+      <point x="666.9957627118644" y="888.0" />
+      <point x="666.9957627118642" y="542.0" />
+      <point x="701.9999999999999" y="542.0" />
+      <point x="89.0" y="61.0" />
+    </edge>
+    <edge source="cn.herrhu.springframework.beans.factory.support.DefaultSingletonBeanRegistry" target="cn.herrhu.springframework.beans.factory.config.SingletonBeanRegistry" relationship="REALIZATION">
+      <point x="0.0" y="-94.0" />
+      <point x="207.5" y="125.0" />
+      <point x="230.86228813559308" y="125.0" />
+      <point x="-70.5" y="38.5" />
+    </edge>
+    <edge source="cn.herrhu.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory" target="cn.herrhu.springframework.beans.factory.config.AutowireCapableBeanFactory" relationship="REALIZATION">
+      <point x="123.75000000000006" y="-138.0" />
+      <point x="585.7033898305083" y="898.0" />
+      <point x="1350.383474576271" y="898.0" />
+      <point x="117.0" y="38.5" />
+    </edge>
+    <edge source="cn.herrhu.springframework.beans.factory.support.DefaultListableBeanFactory" target="cn.herrhu.springframework.beans.factory.ConfigurableListableBeanFactory" relationship="REALIZATION">
+      <point x="91.0" y="-94.0" />
+      <point x="965.7033898305083" y="1225.0" />
+      <point x="1186.3283898305085" y="1225.0" />
+      <point x="1186.3283898305085" y="1215.0" />
+      <point x="996.3283898305084" y="1215.0" />
+      <point x="0.0" y="49.5" />
+    </edge>
+    <edge source="cn.herrhu.springframework.beans.factory.support.DefaultListableBeanFactory" target="cn.herrhu.springframework.beans.factory.support.BeanDefinitionRegistry" relationship="REALIZATION">
+      <point x="91.0" y="-94.0" />
+      <point x="965.7033898305083" y="1225.0" />
+      <point x="1186.3283898305085" y="1225.0" />
+      <point x="1186.3283898305085" y="1215.0" />
+      <point x="1376.3283898305085" y="1215.0" />
+      <point x="0.0" y="60.5" />
+    </edge>
+    <edge source="cn.herrhu.springframework.beans.factory.HierarchicalBeanFactory" target="cn.herrhu.springframework.beans.factory.BeanFactory" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-15.0" />
+      <point x="686.883474576271" y="125.0" />
+      <point x="931.1673728813558" y="125.0" />
+      <point x="0.0" y="49.5" />
+    </edge>
+    <edge source="cn.herrhu.springframework.beans.factory.support.AbstractBeanFactory" target="cn.herrhu.springframework.beans.factory.support.FactoryBeanRegistrySupport" relationship="GENERALIZATION">
+      <point x="-93.0" y="-149.0" />
+      <point x="245.2033898305084" y="542.0" />
+      <point x="207.5" y="542.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="cn.herrhu.springframework.beans.factory.config.ConfigurableBeanFactory" target="cn.herrhu.springframework.beans.factory.config.SingletonBeanRegistry" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-61.0" />
+      <point x="612.9999999999999" y="366.0" />
+      <point x="554.383474576271" y="366.0" />
+      <point x="554.383474576271" y="125.0" />
+      <point x="371.8622881355931" y="125.0" />
+      <point x="70.5" y="38.5" />
+    </edge>
+    <edge source="cn.herrhu.springframework.beans.factory.support.FactoryBeanRegistrySupport" target="cn.herrhu.springframework.beans.factory.support.DefaultSingletonBeanRegistry" relationship="GENERALIZATION">
+      <point x="0.0" y="-61.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="cn.herrhu.springframework.beans.factory.config.AutowireCapableBeanFactory" target="cn.herrhu.springframework.beans.factory.BeanFactory" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-38.5" />
+      <point x="1233.383474576271" y="125.0" />
+      <point x="931.1673728813558" y="125.0" />
+      <point x="0.0" y="49.5" />
+    </edge>
+    <edge source="cn.herrhu.springframework.beans.factory.ConfigurableListableBeanFactory" target="cn.herrhu.springframework.beans.factory.config.AutowireCapableBeanFactory" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-49.5" />
+      <point x="996.3283898305084" y="888.0" />
+      <point x="1116.383474576271" y="888.0" />
+      <point x="-117.0" y="38.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.6386785960082588" showDependencies="false" x="779.5" y="716.4999999999999" />
+  <SelectedNodes>
+    <node>cn.herrhu.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
