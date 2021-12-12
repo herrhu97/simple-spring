@@ -5,6 +5,9 @@ package com.herrhu.springframework.aop;
  * @author: HerrHu
  * @time: 2021/12/7 15:52
  */
-public interface PointcutAdvisor {
+public interface PointcutAdvisor extends Advisor {
+    /**
+     * Get the Pointcut that drives this advisor.
+     */
     Pointcut getPointcut();
 }

@@ -43,4 +43,10 @@ public class AspectJExpressionPointcutAdvisor implements PointcutAdvisor {
         }
         return pointcut;
     }
+
+
+    @Override
+    public Advice getAdvisor() {
+        return advice;
+    }
 }
